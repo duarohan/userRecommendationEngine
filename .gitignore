@@ -1,0 +1,15 @@
+#Rasa stuff
+app/*
+*.db*
+*.dot
+terms/
+results/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook
+.ipynb_checkpoints
+__pycache__
