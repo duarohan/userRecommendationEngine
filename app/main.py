@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask import Flask, render_template, request, jsonify
 import re
 import string
 import pandas as pd
@@ -115,9 +115,6 @@ def process():
     suggestions = list(products[(~products.userId.isnull()) & (products.userId.str.startswith(query))]['userId'])
     suggestions = [{'value':suggestion,'data':suggestion} for suggestion in suggestions]
     return jsonify({"suggestions":suggestions[:5]})
-
-if __name__ == '__main__' :
-    app.run(debug=True,use_reloader=True)
 
 
 

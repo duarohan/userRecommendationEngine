@@ -1,5 +1,4 @@
 #Rasa stuff
-app/*
 *.db*
 *.dot
 terms/
