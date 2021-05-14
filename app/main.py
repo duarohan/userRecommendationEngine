@@ -76,7 +76,7 @@ def cleanDataset(products):
     products.drop(['combine'],axis=1,inplace=True)
     return products
 
-item_final_ratings = pd.read_pickle('./dataset/item_final_rating')
+item_final_ratings = pd.read_pickle('dataset/item_final_rating')
 products = pd.read_csv('dataset/sample30.csv')
 products = cleanDataset(products)    
 productsSentiments = transformAndPredict(products)
