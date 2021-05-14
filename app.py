@@ -76,8 +76,8 @@ def cleanDataset(products):
     products.drop(['combine'],axis=1,inplace=True)
     return products
 
-item_final_ratings = pd.read_pickle('dataset/item_final_rating')
-products = pd.read_csv('dataset/sample30.csv')
+item_final_ratings = pd.read_pickle('./dataset/item_final_rating')
+products = pd.read_csv('./dataset/sample30.csv')
 products = cleanDataset(products)    
 productsSentiments = transformAndPredict(products)
 productMapping = products.drop_duplicates(subset='productId',keep='first')[['productId','name','categories']]
@@ -116,6 +116,9 @@ def process():
     suggestions = [{'value':suggestion,'data':suggestion} for suggestion in suggestions]
     return jsonify({"suggestions":suggestions[:5]})
 
+
+if __name__ == "__main__":
+  app.run()
 
 
 
