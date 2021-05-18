@@ -12,3 +12,5 @@ __pycache__/
 # Jupyter Notebook
 .ipynb_checkpoints
 __pycache__
+
+.jovianrc
