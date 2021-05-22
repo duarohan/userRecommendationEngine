@@ -4,9 +4,11 @@
 ## Steps to run on local
 
 ``` 
+pip install pipenv
 pipenv install flask gunicorn 
 pipenv install -r requirements.txt
 pipenv shell
+python app.py
 ```
 ## Steps to run on heroku
 

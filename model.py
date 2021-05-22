@@ -31,6 +31,7 @@ def remove_stopwords(text):
     rem_text = " ".join([i for i in textArr if i not in stop_words])
     return rem_text
 
+# Applying the same transformation required to predict on fresh dataset with the pickeled model
 def transformAndPredict(df):
     df['review'] = df.apply(lambda x: concatTitleText(x['reviews_title'],x['reviews_text']),axis=1)
     df['review'] = df['review'].apply(clean_text)
@@ -52,6 +53,7 @@ def transformAndPredict(df):
     df_final['Prediction'] = pred
     return df_final
 
+#Cleaning the dataset in a similar was as was done at the time of training to get the best results
 def cleanDataset(products):
     products.rename(columns = {'id' : 'productId'},inplace=True)
     products.rename(columns = {'reviews_username' : 'userId'},inplace=True)
