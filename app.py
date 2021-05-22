@@ -76,7 +76,7 @@ def cleanDataset(products):
     products.drop(['combine'],axis=1,inplace=True)
     return products
 
-item_final_ratings = pd.read_pickle('./dataset/item_final_rating')
+user_final_ratings = pd.read_pickle('./pickle/user_final_rating',compression='zip')
 products = pd.read_csv('./dataset/sample30.csv')
 products = cleanDataset(products)    
 productsSentiments = transformAndPredict(products)
@@ -86,10 +86,12 @@ def getRecommendedProduct(username,productMapping):
   tablesAlreadyBought = pd.DataFrame()
   df_final = pd.DataFrame()
   df_final5 = pd.DataFrame()
-  if username not in item_final_ratings.index:
+  if username not in user_final_ratings.index:
     userdetails = 'Data Not Available'
   else:
-    df_final = item_final_ratings.loc[username].sort_values(ascending=False)[0:20]
+    df_final = user_final_ratings.loc[username].sort_values(ascending=False)[0:20]
+    df_final = pd.concat({"productId": pd.Series(list(df_final.index)),
+                        "probScore": pd.Series(list(df_final.values))},axis=1)
     df_final = pd.merge(df_final,productMapping,left_on='productId',right_on='productId',how = 'left')
     productList = list(df_final['productId'])
     final5 = checkProductSentiment(productList,productsSentiments)
